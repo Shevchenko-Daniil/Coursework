@@ -20,8 +20,8 @@ public:
 		u = Vector3D{5e5, 0, 0};
 	}
 
-	Vector3D func1(Vector3D R);
-	Vector3D func2(Vector3D R);
+	Vector3D func1(Vector3D R);  //как в задаче
+	Vector3D func2(Vector3D R);  //по окружности
 
 	void RK4_step(double dt);
 

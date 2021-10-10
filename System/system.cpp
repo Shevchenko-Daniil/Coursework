@@ -16,33 +16,21 @@ Vector3D System::func2(Vector3D R){
 void System::RK4_step(double dt){
 	Vector3D u0 = u;
 
-	Vector3D ku1, ku2, ku3, ku4;
-	ku1 = func2(r);
-	ku2 = func2(r + 0.5*dt*ku1);
-	ku3 = func2(r + 0.5*dt*ku2);
-	ku4 = func2(r + ku3*dt);
+	Vector3D k1, k2, k3, k4, l1, l2, l3, l4;
 
-	u += (dt/6.)*(ku1 + 2.*ku2 + 2.*ku3 + ku4);
+	k1 = u0;
+	l1 = func1(r);
+	k2 = u0 + 0.5*dt*l1;
+	l2 = func1(r + 0.5*dt*k1);
+	k3 = u0 + 0.5*dt*l2;
+	l3 = func1(r + 0.5*dt*k2);
+	k4 = u0 + l3*dt;
+	l4 = func1(r + dt*k3);
 
-	Vector3D kr1, kr2, kr3, kr4;
-
-	kr1 = u0;
-	kr2 = u0 + 0.5*dt*kr1;
-	kr3 = u0 + 0.5*dt*kr2;
-	kr4 = u0 + kr3*dt;
-
-
-	r += (dt/6.)*(kr1 + 2.*kr2 + 2.*kr3 + kr4);
-
+	r += (dt/6.)*(k1 + 2*k2 + 2*k3 + k4);
+	u += (dt/6.)*(l1 + 2*l2 + 2*l3 + l4);
 	t += dt;
 
-	/*
-	Vector3D dr = u*dt;
-	Vector3D du = gamma*k*( r * (3*scalprod(p, r) + q*r.length()*r.length())/pow(r.length(), 5) - p/pow(r.length(), 3)  )*dt;
-
-	t +=dt;
-	u +=du;
-	r +=dr;*/
 }
 
 

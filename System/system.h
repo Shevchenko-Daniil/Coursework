@@ -4,6 +4,7 @@
 #include "../Vector3D/vector3D.h"
 
 
+
 class System{
 private:
 	double q, gamma, t;
@@ -17,7 +18,7 @@ public:
 		t = 0;
 		p = Vector3D{6.11e-33, 0, 0};
 		r = Vector3D{0, 1e-9, 0};
-		u = Vector3D{5e5, 0, 0};
+		u = Vector3D{503428., 0, 0};
 	}
 
 	Vector3D func1(Vector3D R);  //как в задаче
